@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backendapi:
+    image: ${DOCKER_REGISTRY-}backendapi
+    build:
+      context: .
+      dockerfile: BackendAPI/Dockerfile
+    ports:
+      - "8080:8080"
+    networks:
+      - iot_mesh_network
+
+  frontendclient:
+    image: frontendclient
+    build:
+      context: ./FrontendClient
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backendapi
+    networks:
+      - iot_mesh_network
+
+networks:
+  iot_mesh_network:
+    driver: bridge
