@@ -71,7 +71,8 @@ const DataAggregation = () => {
 
     return (
         <div style={styles.container}>
-            <Link to="/" style={styles.backButton}>← Back to Dashboard</Link>
+            <Link to="/" style={styles.button}>← Back to Dashboard</Link>
+            <hr></hr>
             <h2> Data Aggregation Engine</h2>
             <p>Testing C# Operator Overloading via API</p>
 
@@ -108,9 +109,8 @@ const DataAggregation = () => {
 
 const styles = {
     container: { padding: '2rem', fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto' },
-    backButton: { textDecoration: 'none', color: '#0056b3', marginBottom: '1rem', display: 'inline-block' },
     dataBox: { border: '1px solid #ccc', borderRadius: '4px', marginBottom: '20px', padding: '10px' },
-    button: { padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' },
+    button: { padding: '10px 20px', backgroundColor: '#007bff', color: '#fff', border: 'none', textDecoration: 'none', borderRadius: '4px', cursor: 'pointer', fontWeight: 'bold' },
     successMessage: { marginTop: '20px', padding: '15px', backgroundColor: '#d4edda', color: '#155724', borderRadius: '4px', border: '1px solid #c3e6cb' },
     errorMessage: { marginTop: '20px', padding: '15px', backgroundColor: '#f8d7da', color: '#721c24', borderRadius: '4px', border: '1px solid #f5c6cb' }
 };

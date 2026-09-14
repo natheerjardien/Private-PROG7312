@@ -30,9 +30,9 @@ namespace BackendAPI.Models
         }
 
         // Converts the jagged array data into generic Object-Oriented packets
-        public static List<TelemetryPacket<float>> GetSeededPackets()
+        public static TelemetryCollection<TelemetryPacket<float>> GetSeededPackets()
         {
-            var packets = new List<TelemetryPacket<float>>();
+            var packets = new TelemetryCollection<TelemetryPacket<float>>();
 
             // Generates a jagged array for 2 sensors, each with 5 readings
             float[][] rawData = GenerateJaggedTelemetryBatch(2, 5);

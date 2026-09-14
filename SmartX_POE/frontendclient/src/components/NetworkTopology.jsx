@@ -74,7 +74,7 @@ const NetworkTopology = () => {
 
     return (
         <div style={styles.container}>
-            <Link to="/" style={styles.backButton}>← Back to Dashboard</Link>
+            <Link to="/" style={styles.button}>← Back to Dashboard</Link>
             <h2> Network Topology Mapper</h2>
             <p>Visualizing and recursively validating the IoT mesh hierarchy.</p>
 
@@ -103,7 +103,6 @@ const NetworkTopology = () => {
 
 const styles = {
     container: { padding: '2rem', fontFamily: 'Arial, sans-serif', maxWidth: '800px', margin: '0 auto' },
-    backButton: { textDecoration: 'none', color: '#0056b3', marginBottom: '1rem', display: 'inline-block' },
     treeContainer: { backgroundColor: '#f8f9fa', padding: '15px', borderRadius: '8px', marginBottom: '20px', border: '1px solid #ddd' },
     nodeBox: { margin: '5px 0', padding: '5px' },
     subNodeContainer: { marginLeft: '30px', borderLeft: '2px dashed #ccc', paddingLeft: '10px' },

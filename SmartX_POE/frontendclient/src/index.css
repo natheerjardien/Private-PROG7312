@@ -38,7 +38,11 @@
 
 body {
     margin: 0;
-    background-color: var(--bg);
+    background-color: var(--lavender-mist);
+    background-image: linear-gradient(rgba(243, 239, 245, 0.2), rgba(243, 239, 245, 0.6)), url('/bg-texture.jpg');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
 }
 
 #root {
@@ -46,12 +50,12 @@ body {
     max-width: 100%;
     margin: 0 auto;
     text-align: center;
-    border-inline: 1px solid var(--border);
     min-height: 100svh;
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     box-sizing: border-box;
-    background-color: var(--bg);
 }
 
 h1,

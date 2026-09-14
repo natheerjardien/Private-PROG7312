@@ -79,6 +79,42 @@ namespace BackendAPI
                 return Results.Ok(seededData);
             });
 
+            // Handles encrypted multipart file uploads for sensor logs (Microsoft, 2026c)
+            app.MapPost("/api/telemetry/upload", async (IFormFile file) =>
+            {
+                if (file == null || file.Length == 0)
+                {
+                    return Results.BadRequest("No file was uploaded.");
+                }
+
+                try
+                {
+                    // Ensure the 'Uploads' directory exists in the container
+                    var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "Uploads");
+                    if (!Directory.Exists(uploadsFolder))
+                    {
+                        Directory.CreateDirectory(uploadsFolder);
+                    }
+
+                    // Creates unique filename for the encrypted output
+                    var safeFileName = Guid.NewGuid().ToString() + ".enc";
+                    var filePath = Path.Combine(uploadsFolder, safeFileName);
+
+                    // Processes and encrypts the multipart stream smoothly
+                    await BackendAPI.Models.FileEncryptionService.EncryptAndSaveFileAsync(file, filePath);
+
+                    return Results.Ok(new
+                    {
+                        Message = "File uploaded and encrypted successfully",
+                        EncryptedFileName = safeFileName
+                    });
+                }
+                catch (Exception ex)
+                {
+                    return Results.InternalServerError($"File upload failed: {ex.Message}");
+                }
+            }).DisableAntiforgery(); // Disables antiforgery token checks for multipart APIs
+
             app.Run();
         }
     }
@@ -89,4 +125,7 @@ namespace BackendAPI
    Microsoft, 2026a. Minimal APIs overview. [online] Available at: <https://learn.microsoft.com/en-us/aspnet/core/fundamentals/minimal-apis?view=aspnetcore-10.0> [Accessed 9 September 2026].
    
    Microsoft, 2026b. Enable Cross-Origin Requests (CORS) in ASP.NET Core. [online] Available at: <https://learn.microsoft.com/en-us/aspnet/core/security/cors?view=aspnetcore-10.0> [Accessed 9 September 2026].
+
+   Microsoft, 2026c. Upload files in ASP.NET Core. [online] Available at: <https://learn.microsoft.com/en-us/aspnet/core/mvc/models/file-uploads> [Accessed 13 September 2026].
+
 */
